@@ -673,7 +673,6 @@ class Daemon:
         Log.info("Daemon shutdown request received")
         _thread.start_new_thread(Daemon.ShutdownWork, (self.server,))
         self.RpcStop(quiet=True)
-        sys.exit()
 
     def CleanupIntermediates(self):
         CleanupTempFiles()
