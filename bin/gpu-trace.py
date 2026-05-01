@@ -114,7 +114,7 @@ class DeathError(Exception):
 
 
 def Die(msg, previousException=None):
-    Log.critical(msg)
+    Log.critical(msg, exc_info=previousException)
     if previousException is None or not Log.isEnabledFor(logging.DEBUG):
         sys.exit(-1)
     else:
