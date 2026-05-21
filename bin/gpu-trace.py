@@ -114,7 +114,7 @@ class DeathError(Exception):
 
 
 def Die(msg, previousException=None):
-    Log.critical(msg)
+    Log.critical(msg, exc_info=previousException)
     if previousException is None or not Log.isEnabledFor(logging.DEBUG):
         sys.exit(-1)
     else:
@@ -673,7 +673,6 @@ class Daemon:
         Log.info("Daemon shutdown request received")
         _thread.start_new_thread(Daemon.ShutdownWork, (self.server,))
         self.RpcStop(quiet=True)
-        sys.exit()
 
     def CleanupIntermediates(self):
         CleanupTempFiles()
